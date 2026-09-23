@@ -1,0 +1,12 @@
+# SQLite Database files
+*.sqlite3
+*.sqlite
+*.db
+
+# Python environment and cache
+__pycache__/
+*.pyc
+.env
+venv/
+.venv/
+instance/
