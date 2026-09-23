@@ -13,6 +13,8 @@ class Collection(db.Model):
     def __repr__(self):
         return '<Book %r>' % self.id
 
+with app.app_context():
+    db.create_all()
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
