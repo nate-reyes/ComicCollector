@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>ComicCollector</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1>Update Book Entry</h1>
+
+    <table>
+        <tr>
+            <th>Book</th>
+            <th>Read</th>
+            <th>Actions</th>
+        </tr>
+        {%for book in books%}
+        <tr>
+            <td>{{book.content}}</td>
+            <td>{{book.date_entry.date()}}</td>
+            <td>
+                <a href="/delete/{{book.id}}">Delete</a>
+                <br>
+                <a href="">/update/{{book.id}}</a>
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+
+    <form action="/update/{{book.id}}" method="POST">
+        <input type="text" name="content" id="content" value="{{book.content}}">
+        <input type="submit" value="add book">
+    </form>
+</div>
+{% endblock %}
