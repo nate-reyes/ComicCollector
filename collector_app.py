@@ -9,6 +9,8 @@ class Collection(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(200), nullable=False)
     date_entry = db.Column(db.DateTime, default=datetime.utcnow)
+    author = db.Column(db.String(200), nullable=False)
+    volume = db.Column(db.String(200), nullable=False)
 
     def __repr__(self):
         return '<Book %r>' % self.id
@@ -20,7 +22,9 @@ with app.app_context():
 def index():
     if request.method == "POST":
         book_content = request.form['content']
-        new_book = Collection(content = book_content)
+        book_author = request.form['author']
+        book_volume = request.form['volume']
+        new_book = Collection(content = book_content, author = book_author, volume = book_volume)
 
         try:
             db.session.add(new_book)
@@ -47,6 +51,8 @@ def update(id):
     book_to_update = Collection.query.get_or_404(id)
     if request.method == 'POST':
         book_to_update.content = request.form['content']
+        book_to_update.author = request.form['author']
+        book_to_update.volume = request.form['volume']
 
         try:
             db.session.commit()
@@ -54,7 +60,7 @@ def update(id):
         except:
             return 'There was an issue updating your entry'
     else:
-        return render_template('update.html', book_to_update = book_to_update)
+        return render_template('update.html', book = book_to_update)
 
 if __name__ == "__main__":
     app.run(debug=True)
