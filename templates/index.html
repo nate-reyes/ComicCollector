@@ -15,24 +15,30 @@
     <table>
         <tr>
             <th>Book</th>
+            <th>Author</th>
+            <th>Volume</th>
             <th>Read</th>
             <th>Actions</th>
         </tr>
         {% for book in books %}
         <tr>
             <td>{{book.content}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.volume}}</td>
             <td>{{book.date_entry.date()}}</td>
             <td>
                 <a href="/delete/{{book.id}}">Delete</a>
                 <br>
-                <a href=">/update/{{book.id}}">Update</a>
+                <a href="/update/{{book.id}}">Update</a>
             </td>
         </tr>
         {% endfor %}
     </table>
     {% endif %}
     <form action="/" method="POST">
-        <input type="text" name="content" id="content">
+        <input type="text" name="content" id="content" placeholder="title">
+        <input type="text" name="author" id="author" placeholder="author">
+        <input type="text" name="volume" id="volume" placeholder="volume">
         <input type="submit" value="add book">
     </form>
 </div>
