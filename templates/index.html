@@ -1,11 +1,7 @@
 {% extends 'base.html' %}
 
-{% block head %}
-<title>ComicCollector</title>
-{% endblock %}
-
 {% block body %}
-<div class="content">
+<div class="title">
     <h1>Comic Collector</h1>
     {% if books|length < 1 %}
     <h4>
@@ -22,7 +18,7 @@
         </tr>
         {% for book in books %}
         <tr>
-            <td>{{book.content}}</td>
+            <td><a href="{{ url_for('display_info', title=book.title) }}">{{book.title}}</a></td>
             <td>{{book.author}}</td>
             <td>{{book.volume}}</td>
             <td>{{book.date_entry.date()}}</td>
@@ -36,7 +32,7 @@
     </table>
     {% endif %}
     <form action="/" method="POST">
-        <input type="text" name="content" id="content" placeholder="title">
+        <input type="text" name="title" id="title" placeholder="title">
         <input type="text" name="author" id="author" placeholder="author">
         <input type="text" name="volume" id="volume" placeholder="volume">
         <input type="submit" value="add book">
