@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="title">
+  <h1>{{ book.title }}</h1>
+  
+  <dl>
+    <dt><strong>Author:</strong></dt>
+    <dd>{{ book.author }}</dd>
+
+    <dt><strong>Volume:</strong></dt>
+    <dd>{{ book.volume }}</dd>
+
+    <dt><strong>Date Read:</strong></dt>
+    <dd>{{ book.date_entry.date() }}</dd>
+  </dl>
+</div>
+{% endblock %}
