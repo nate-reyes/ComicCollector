@@ -62,9 +62,12 @@ def update(id):
     else:
         return render_template('update.html', book = book_to_update)
 
+#trying to create a path to display book details
 @app.route('/<string:title>')
 def display_info(title):
     book = Collection.query.filter_by(title=title).first_or_404()
-    return f"This is the page for {book.title}"
+    return render_template('book_details.html', book=book)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
