@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-<div class="content">
+<div class="title">
     <h1>Update Book Entry</h1>
 
     <table>
@@ -16,7 +16,7 @@
         </tr>
         {%for book in books%}
         <tr>
-            <td>{{book.content}}</td>
+            <td>{{book.title}}</td>
             <td>{{book.date_entry.date()}}</td>
             <td>
                 <a href="/delete/{{book.id}}">Delete</a>
@@ -28,7 +28,7 @@
     </table>
 
     <form action="/update/{{book.id}}" method="POST">
-        <input type="text" name="content" id="content" value="{{book.content}}">
+        <input type="text" name="title" id="title" value="{{book.title}}">
         <input type="submit" value="add book">
     </form>
 </div>
