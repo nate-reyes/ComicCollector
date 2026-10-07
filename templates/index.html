@@ -3,11 +3,16 @@
 {% block body %}
 <div class="title">
     <h1>Comic Collector</h1>
+    <form action="/search" method="GET" style="margin-bottom: 20px;">
+        <input type="text" name="query" placeholder="Search for comics..." required>
+        <input type="submit" value="Search">
+    </form>
     {% if books|length < 1 %}
     <h4>
         There are no entries. Enter your first book!
     </h4>
     {% else %}
+    
     <table>
         <tr>
             <th>Book</th>
@@ -31,11 +36,11 @@
         {% endfor %}
     </table>
     {% endif %}
-    <form action="/" method="POST">
+    <!-- <form action="/" method="POST">
         <input type="text" name="title" id="title" placeholder="title">
-        <input type="text" name="author" id="author" placeholder="author">
+        <input type="text" name="creative_team" id="creative_team" placeholder="">
         <input type="text" name="volume" id="volume" placeholder="volume">
         <input type="submit" value="add book">
-    </form>
+    </form> -->
 </div>
 {% endblock %}
