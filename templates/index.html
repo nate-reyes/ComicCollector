@@ -18,7 +18,7 @@
         </tr>
         {% for book in books %}
         <tr>
-            <td><a href="{{ url_for('display_info', title=book.title) }}">{{book.title}}</a></td>
+            <td><a href="{{ url_for('display_info', id=book.id) }}">{{book.title}}</a></td>
             <td>{{book.author}}</td>
             <td>{{book.volume}}</td>
             <td>{{book.date_entry.date()}}</td>
