@@ -3,16 +3,18 @@
 {% block body %}
 <div class="title">
   <h1>{{ book.title }}</h1>
+  {% if book.cover_url %}
+    <img src="{{ book.cover_url }}">
+  {% endif %}
   
-  <dl>
-    <dt><strong>Author:</strong></dt>
-    <dd>{{ book.author }}</dd>
+  <p>Volume: {{ book.volume }}</p>
+  <p>Publisher: {{ book.publisher }}</p>
+  <p>Author: {{ book.author }}</p>
+  <p>Artist: {{ book.artist }}</p>
 
-    <dt><strong>Volume:</strong></dt>
-    <dd>{{ book.volume }}</dd>
+  <p>Rating: {{ book.rating }}</p>
 
-    <dt><strong>Date Read:</strong></dt>
-    <dd>{{ book.date_entry.date() }}</dd>
-  </dl>
-</div>
+  <p>Date Logged: {{ book.date_entry.date() }}</p>
+
+  <p>Notes: {{ book.notes }}</p>
 {% endblock %}
