@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+#import requests #beginning to build API integration
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
@@ -9,8 +10,16 @@ class Collection(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
     date_entry = db.Column(db.DateTime, default=datetime.utcnow)
+    publisher = db.Column(db.String(200), nullable=False)
     author = db.Column(db.String(200), nullable=False)
-    volume = db.Column(db.String(200), nullable=False)
+    artist = db.Column(db.String(200), nullable=False)
+    volume = db.Column(db.String(200), nullable=True)
+
+    rating = db.Column(db.Integer)
+    notes = db.Column(db.Text)
+
+    cover_url = db.Column(db.String(500))
+    gcd_id = db.Column(db.Integer)
 
     def __repr__(self):
         return '<Book %r>' % self.id
@@ -63,10 +72,12 @@ def update(id):
         return render_template('update.html', book = book_to_update)
 
 #trying to create a path to display book details
-@app.route('/<string:title>')
-def display_info(title):
-    book = Collection.query.filter_by(title=title).first_or_404()
+@app.route('/book/<int:id>')
+def display_info(id):
+    #switched from id to title to account for larger or overlapping titles
+    book = Collection.query.get_or_404(id)
     return render_template('book_details.html', book=book)
+
 
 
 if __name__ == "__main__":
