@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="title">
+    <h1>Comic Collector</h1>
+
+    <h2>Search Results for: "{{ query }}"</h2>
+    <a href="/">Return to Home</a>
+
+    <br><br>
+
+    <ul>
+        {% for result in results %}
+            <li style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
+                
+                <span><strong>{{ result.title }}</strong> by {{ result.author }}</span>
+            <form action="/" method="POST">
+                <input type="hidden" name="gcd_url" value="{{ result.gcd_url }}">
+                <input type="submit" value="Add to Collection">
+            </form>
+
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock%}
